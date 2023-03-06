@@ -11,6 +11,8 @@
   <p id="time_two"></p>
 
   <!-- Add button and table here -->
+  <p><button type ="button">Get City Info</button> </p>
+
 
   <script>
   //set interval timers to trigger the refresh.  Here the callback function will
@@ -44,6 +46,13 @@
       results.always(function() {console.log("done");});
 
 
+  }
+  function getCityInfo(){
+    var city = new String;
+    var info = $.get("http://www.randyconnolly.com/funwebdev/services/travel/cities.php");
+    info.done(function(data){
+      
+    })
   }
   </script>
 
