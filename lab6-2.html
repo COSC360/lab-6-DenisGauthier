@@ -11,7 +11,9 @@
   <p id="time_two"></p>
 
   <!-- Add button and table here -->
-  <p><button type ="button">Get City Info</button> </p>
+  <button id="cityBut">Get City Info</button>
+  <table id="cityTable">
+  </table>
 
 
   <script>
@@ -47,14 +49,20 @@
 
 
   }
-  function getCityInfo(){
-    var city = new String;
-    var info = $.get("http://www.randyconnolly.com/funwebdev/services/travel/cities.php");
-    info.done(function(data){
-      
-    })
-  }
+
+  $("#cityBut").on("click",function(){
+    $.get("http://www.randyconnolly.com/funwebdev/services/travel/cities.php", function(e){
+      var header = $("<tr><th>id</th><th>name</th><th>iso</th><th>latitude</th><th>longitude</th><th>population</th><th>elevation</th></tr>");
+      var tbody = $("<tbody></tbody>");
+      $.each(e, function(i, city){
+          var newRow = $('<tr><td>' + city.id + '<\/td><td>'+city.name+'<\/td><td>' + city.iso + '<\/td><td>' + city.latitude + '<\/td><td>' + city.longitude + '<\/td><td>' + city.population + '<\/td><td>' + city.elevation + '<\/td><\/tr>');
+          tbody.append(newRow);
+      });
+    $("cityTable").append(header,tbody);
+    });
+  });
   </script>
 
   </body>
 </html>
+

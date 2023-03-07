@@ -25,7 +25,7 @@ $('.panel')
 
 $("#panel-2>p").prepend($('<img src="/images/art/thumbs/13030.jpg" alt="Woman in chair">'));
 
-$(".container>img").hover(function(){
+$(".img-responsive").on("mouseover",function(){
     /*come back to this */
     var alt =$(this).attr('alt');
     var src = $(this).attr('src');
@@ -36,8 +36,14 @@ $(".container>img").hover(function(){
     var caption = $('<p>'+alt+'</p>');
 
     $(this).addClass("gray");
+    preview.append(image,caption);
+    $(this).after(preview);
+    $("#preview").fadeIn("1000");
 
 
 })
-.on("mouseleave",$(this).removeClass("gray"));
+.on("mouseleave",function(){
+    $("#preview").fadeOut("1000",$("#preview").remove());
+    $(this).removeClass("gray");
+});
 }
